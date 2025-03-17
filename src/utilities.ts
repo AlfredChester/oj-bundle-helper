@@ -1,13 +1,11 @@
 // 辅助工具函数
 
-// ...existing code: check...
 export function check(a: string, b: string): boolean {
     return (a.isIdentifierPart() && b.isIdentifierPart()) ||
         ((a === ' + ' || a === '-') && a === b) ||
         (a === '/' && b === '*');
 }
 
-// 新增辅助函数：替换单个 trigraph
 function replaceTrigraph(str: string, ch: string, replacement: string): string {
     let ret = '';
     let lst = 0;
@@ -24,7 +22,6 @@ function replaceTrigraph(str: string, ch: string, replacement: string): string {
     return ret;
 }
 
-// 修改 processTrigraph 以提高可读性
 export function processTrigraph(str: string): string {
     const trigraphs: { [key: string]: string } = {
         '=': '#',
@@ -43,14 +40,12 @@ export function processTrigraph(str: string): string {
     return str;
 }
 
-// 新增辅助函数：处理单行换行
 function processSingleLine(line: string, endl: string): string {
     let j = line.length - 1;
     while (j >= 0 && line[j].isSpace()) { j--; }
     return (line[j] === '\\') ? line.substring(0, j) : line + endl;
 }
 
-// 修改 processLineBreak 以提高可读性
 export function processLineBreak(str: string): string {
     const endl: string = '\n';
     const lines = str.split(endl);
@@ -62,7 +57,6 @@ export function processLineBreak(str: string): string {
     return ret;
 }
 
-// 新增辅助函数：替换多行注释
 function replaceMultilineComment(str: string, start: number): { replacement: string, end: number } {
     const endIndex = str.indexOf('*/', start + 2);
     if (endIndex === -1) {
@@ -71,12 +65,10 @@ function replaceMultilineComment(str: string, start: number): { replacement: str
     return { replacement: ' ', end: endIndex + 2 };
 }
 
-// 新增辅助函数：替换标记
 function replaceMark(str: string, start: number): { replacement: string, end: number } {
     return { replacement: "#", end: start + 2 };
 }
 
-// 修改 processMultilineCommentAndReplaceMark 以提高可读性
 export function processMultilineCommentAndReplaceMark(str: string): string {
     let ret = '';
     let stringBegin = '';

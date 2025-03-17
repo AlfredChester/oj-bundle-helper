@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "oj-bundle.helloWorld",
-        "title": "Hello World"
+        "command": "oj-bundle.bundle-and-paste",
+        "title": "oj-bundle: Bundle and paste"
       }
     ]
   },
