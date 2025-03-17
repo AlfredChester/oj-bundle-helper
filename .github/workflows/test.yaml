@@ -16,5 +16,7 @@ jobs:
               with:
                   node-version: 18.x
             - run: npm install
+            - run: xvfb-run -a npm run test
+              if: runner.os == 'Linux'
             - run: npm run test
               if: runner.os != 'Linux'
