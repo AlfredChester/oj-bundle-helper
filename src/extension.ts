@@ -8,6 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
+	// VScode seems to use lazy loading, so this line will not be executed until the extension is activated
 	console.log('Congratulations, your extension "oj-bundle" is now active!');
 
 	// The command has been defined in the package.json file
@@ -23,4 +24,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
