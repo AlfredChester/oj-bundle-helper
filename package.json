@@ -2,6 +2,7 @@
   "name": "oj-bundle",
   "displayName": "oj-bundle",
   "description": "oj-bundle adaptor",
+  "publisher": "alfred-bao",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
