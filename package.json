@@ -41,8 +41,8 @@
     "keybindings": [
       {
         "command": "oj-bundle.bundle-and-paste",
-        "key": "ctrl+f1",
-        "mac": "cmd+f1",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
         "when": "editorTextFocus"
       }
     ]
