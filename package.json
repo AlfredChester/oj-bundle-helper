@@ -22,7 +22,22 @@
         "command": "oj-bundle.bundle-and-paste",
         "title": "oj-bundle: Bundle and paste"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "oj-bundle",
+      "properties": {
+        "oj-bundle.executable": {
+          "type": "string",
+          "default": "oj-bundle",
+          "description": "oj-bundle executable path."
+        },
+        "oj-bundle.args": {
+          "type": "string",
+          "default": "",
+          "description": "Space seperated additional flags passed to oj-bundle. Example '-I path/to/your/library1 -I path/to/your/library2'."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
