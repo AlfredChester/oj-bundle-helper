@@ -2,17 +2,24 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { compress } from './compress';
+import { bundle, Run } from './bundle';
 
-function bundleAndPaste() {
+async function bundleAndPaste() {
 	const editor = vscode.window.activeTextEditor;
 	if (editor) {
 		const document = editor.document;
+		var text = document.getText();
 		try {
-			var text = document.getText();
-			vscode.env.clipboard.writeText(compress(text));
-			vscode.window.showInformationMessage('Successfully copied to clipboard.');
+			const result: Run = await bundle(text);
+			console.log("Result: ", result);
+			if (result.code !== 0) {
+				vscode.window.showErrorMessage("Failed to bundle the code. Error: " + result.stderr);
+			} else {
+				vscode.env.clipboard.writeText(compress(result.stdout));
+				vscode.window.showInformationMessage('Successfully copied to clipboard.');
+			}
 		} catch (error) {
-			console.log(error);
+			vscode.window.showErrorMessage("Failed to bundle the code. Error: " + error);
 		}
 	}
 }
