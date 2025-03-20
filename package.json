@@ -3,7 +3,7 @@
   "displayName": "oj-bundle",
   "description": "oj-bundle adaptor",
   "publisher": "alfred-bao",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -37,7 +37,15 @@
           "description": "Space seperated additional flags passed to oj-bundle. Example '-I path/to/your/library1 -I path/to/your/library2'."
         }
       }
-    }
+    },
+    "keybindings": [
+      {
+        "command": "oj-bundle.bundle-and-paste",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorTextFocus"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

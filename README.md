@@ -16,5 +16,5 @@ $ pip3 install online-judge-verify-helper
 
 This extension contributes the following settings:
 
-* `oj-bundle.include`: List of libraries to include in the bundle. You can add multiple libraries by separating them with a comma.
+* `oj-bundle.args`: Space seperated additional flags passed to oj-bundle. Example '-I path/to/your/library1 -I path/to/your/library2'
 * `oj-bundle.executable`: Executable path to the `oj-bundle` tool.
