@@ -1,4 +1,4 @@
-import { workspace } from "vscode";
+import { workspace, window } from "vscode";
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 
 import * as fs from 'fs';
@@ -26,14 +26,17 @@ export const bundle = (src: string): Promise<Run> => {
     const executable = config.get('executable', 'oj-bundle');
     const argsStr: string = config.get('args', '');
     const args = argsStr ? argsStr.split(/\s+/) : [];
-    const workspaceFolder = workspace.workspaceFolders;
-    if (workspaceFolder && workspaceFolder.length > 0) {
-        const workspacePath = workspaceFolder[0].uri.fsPath;
+    const editor = window.activeTextEditor;
+    if (editor) {
+        const filePath = editor.document.uri.path;
+        // get its father directory
+        const workspaceDir = path.dirname(filePath);
         // -I <workspacePath> is added to the args
-        args.push('-I', workspacePath);
+        console.log("[oj-bundle] Workspace Path:", workspaceDir);
+        args.push('-I', workspaceDir);
     }
     args.push(file);
-    console.log("Command:", executable, args);
+    console.log("[oj-bundle] Command:", executable, args);
     return new Promise((resolve, reject) => {
         const cp: ChildProcessWithoutNullStreams = spawn(executable, args);
         let stdout = '';
