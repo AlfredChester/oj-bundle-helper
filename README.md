@@ -4,12 +4,16 @@ This project is a vscode extension that integrates the `oj-bundle` tool from [ve
 
 ## Features
 
+This extension provides a command `oj-bundle.bundle-and-paste` that compresses the code and generates a bundle for submission. The bundle is then copied to the clipboard.
+
+You can invoke the command by pressing `Ctrl+Shift+P` and typing `oj-bundle.bundle-and-paste`. Or you can use the shortcut `Ctrl+Alt+S` or `Cmd+Alt+S` (on macOS) to invoke the command directly.
+
 ## Requirements
 
 Install `verification-helper`:
 
 ```bash
-$ pip3 install online-judge-verify-helper
+pip3 install online-judge-verify-helper
 ```
 
 ## Extension Settings
