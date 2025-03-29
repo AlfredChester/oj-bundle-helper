@@ -11,11 +11,12 @@ async function bundleAndPaste() {
 		const text = document.getText();
 		try {
 			const result: Run = await bundle(text);
-			console.log("Result: ", result);
+			console.log("[oj-bundle] Result: ", result);
 			if (result.code !== 0) {
 				vscode.window.showErrorMessage(
 					"Failed to bundle the code. Error: " + result.stderr
 				);
+				console.log("[oj-bundle] Error: ", result.stderr);
 			} else {
 				vscode.env.clipboard.writeText(compress(result.stdout));
 				vscode.window.showInformationMessage('Successfully copied to clipboard.');
