@@ -22,7 +22,7 @@ function replaceTrigraph(str: string, ch: string, replacement: string): string {
     return ret;
 }
 
-export function processTrigraph(str: string): string {
+function processTrigraph(str: string): string {
     const trigraphs: { [key: string]: string } = {
         '=': '#',
         '/': '\\',
@@ -46,7 +46,7 @@ function processSingleLine(line: string, endl: string): string {
     return (line[j] === '\\') ? line.substring(0, j) : line + endl;
 }
 
-export function processLineBreak(str: string): string {
+function processLineBreak(str: string): string {
     const endl: string = '\n';
     const lines = str.split(endl);
     let ret = '';
@@ -69,7 +69,7 @@ function replaceMark(str: string, start: number): { replacement: string, end: nu
     return { replacement: "#", end: start + 2 };
 }
 
-export function processMultilineCommentAndReplaceMark(str: string): string {
+function processMultilineCommentAndReplaceMark(str: string): string {
     let ret = '';
     let stringBegin = '';
     let esc = false;

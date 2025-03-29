@@ -26,8 +26,13 @@ export const bundle = (src: string): Promise<Run> => {
     const executable = config.get('executable', 'oj-bundle');
     const argsStr: string = config.get('args', '');
     const args = argsStr ? argsStr.split(/\s+/) : [];
+    const workspaceFolder = workspace.workspaceFolders;
+    if (workspaceFolder && workspaceFolder.length > 0) {
+        const workspacePath = workspaceFolder[0].uri.fsPath;
+        // -I <workspacePath> is added to the args
+        args.push('-I', workspacePath);
+    }
     args.push(file);
-
     console.log("Command:", executable, args);
     return new Promise((resolve, reject) => {
         const cp: ChildProcessWithoutNullStreams = spawn(executable, args);
