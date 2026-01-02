@@ -2,8 +2,9 @@ import "./string-extensions";
 
 function check(a: string, b: string): boolean {
     return (a.isIdentifierPart() && b.isIdentifierPart()) ||
-        ((a === ' + ' || a === '-') && a === b) ||
-        (a === '/' && b === '*');
+        ((a === '+' || a === '-') && a === b) ||
+        (a === '/' && b === '*') ||
+        (a === '*' && b === '=');
 }
 
 function replaceTrigraph(str: string, ch: string, replacement: string): string {
