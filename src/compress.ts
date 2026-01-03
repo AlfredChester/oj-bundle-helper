@@ -1,9 +1,11 @@
 import "./string-extensions";
 
+// Check if a space is needed between two consecutive tokens to preserve semantics
 function check(a: string, b: string): boolean {
-    return (a.isIdentifierPart() && b.isIdentifierPart()) ||
-        ((a === ' + ' || a === '-') && a === b) ||
-        (a === '/' && b === '*');
+    return (a.isIdentifierPart() && b.isIdentifierPart()) ||  // Prevent merging identifiers (e.g., "int x" should not become "intx")
+        ((a === '+' || a === '-') && a === b) ||  // Prevent creating ++ or -- operators (e.g., "a + + b" should not become "a++b")
+        (a === '/' && b === '*') ||  // Prevent starting a comment (e.g., "a / * b" should not become "a/*b")
+        (a === '*' && b === '=');  // Prevent creating *= operator in pointer contexts (e.g., "T * = nullptr" should not become "T*=nullptr")
 }
 
 function replaceTrigraph(str: string, ch: string, replacement: string): string {
